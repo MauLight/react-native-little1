@@ -13,18 +13,18 @@ export default function WelcomeScreen() {
 
 const styles = StyleSheet.create({
     welcomeContainer: {
-        flex: 0.8,
-        padding: 40,
+        flex: 0.3,
+        padding: 20,
 
         alignItems: 'center'
     },
     welcomeHeader: {
         fontSize: 30,
         fontWeight: 'bold',
-        margin: 30
+        margin: 10
     },
     welcomeText: {
-        fontSize: 20,
+        fontSize: 15,
         fontStyle: 'italic'
     }
 })

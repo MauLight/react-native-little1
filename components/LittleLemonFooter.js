@@ -11,14 +11,14 @@ export default function LittleLemonFooter() {
 
 const styles = StyleSheet.create({
     headerContainer: {
-        flex: 0.08,
         backgroundColor: '#F4CE14',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: 0
     },
     headerText: {
-        padding: 20,
-        fontSize: 15,
+        padding: 15,
+        fontSize: 18,
         color: '#fff',
     }
 })

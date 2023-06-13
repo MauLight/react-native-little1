@@ -13,7 +13,7 @@ export default function App() {
         <WelcomeScreen />
         <MenuItems />
       </View>
-      <View style={{ backgroundColor: '#495E57' }}>
+      <View>
         <LittleLemonFooter />
       </View>
       <StatusBar style="auto" />

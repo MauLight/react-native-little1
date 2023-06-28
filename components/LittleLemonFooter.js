@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
         marginBottom: 0
     },
     headerText: {
-        padding: 15,
-        fontSize: 18,
+        padding: 5,
+        fontSize: 15,
         color: '#fff',
     }
 })

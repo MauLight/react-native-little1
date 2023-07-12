@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, Platform, Pressable } from 'react-native';
 import LittleLemonHeader from './components/LittleLemonHeader';
 import LittleLemonFooter from './components/LittleLemonFooter';
 import WelcomeScreen from './components/WelcomeScreen';
@@ -10,8 +10,11 @@ import { Satisfy_400Regular } from '@expo-google-fonts/satisfy';
 import SectionMenuItems from './components/SectionListItems';
 import FeedbackForm from './components/FeedbackForm';
 import LoginForm from './components/Loginform';
+import { useState } from 'react';
 
 export default function App() {
+
+  const [enterSite, setEnterSite] = useState(false)
 
   let [fontsLoaded] = useFonts({
     Satisfy_400Regular,
@@ -26,13 +29,28 @@ export default function App() {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
             <View style={styles.container}>
               <LittleLemonHeader />
-
-              <SectionMenuItems />
+              {
+                !enterSite && (
+                  <WelcomeScreen />
+                )
+              }
+              {
+                enterSite && (
+                  <SectionMenuItems />
+                )
+              }
             </View>
+            {
+              enterSite && (
+                <View>
+                  <LoginForm />
+                </View>
+              )
+            }
             <View>
-              <LoginForm />
-            </View>
-            <View>
+              <Pressable style={styles.button} onPress={() => setEnterSite(!enterSite)}>
+                <Text style={styles.text}>{!enterSite ? 'Enter Site' : 'Home'}</Text>
+              </Pressable>
               <LittleLemonFooter />
             </View>
             <StatusBar style="auto" />
@@ -51,5 +69,16 @@ const styles = StyleSheet.create({
   },
   container2: {
     flex: 0.2,
+  },
+  button: {
+    padding: 25,
+    backgroundColor: '#ff5050',
+
+  },
+  text: {
+    color: 'black',
+    fontSize: 20,
+    flexWrap: 'wrap',
+    textAlign: 'center',
   }
 });

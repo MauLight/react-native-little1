@@ -30,27 +30,16 @@ export default function SectionMenuItems() {
 
     return (
         <View style={{ flex: 0.8 }}>
-            <Pressable
-                style={styles.button}
-                onPress={() => { setShowMenu(!showMenu) }}
+            <SectionList
+                stickySectionHeadersEnabled={true}
+                sections={menuItemsToDisplay}
+                keyExtractor={(item, index) => item + index}
+                renderItem={renderItem}
+                renderSectionHeader={renderSectionHeader}
+                ItemSeparatorComponent={Separator}
             >
-                <Text style={styles.text}>
-                    {showMenu ? 'Home' : 'Show Menu'}
-                </Text>
-            </Pressable>
-            {
-                showMenu && (
-                    <SectionList
-                        stickySectionHeadersEnabled={true}
-                        sections={menuItemsToDisplay}
-                        keyExtractor={(item, index) => item + index}
-                        renderItem={renderItem}
-                        renderSectionHeader={renderSectionHeader}
-                        ItemSeparatorComponent={Separator}
-                    >
-                    </SectionList>
-                )
-            }
+            </SectionList>
+
         </View>
     );
 }

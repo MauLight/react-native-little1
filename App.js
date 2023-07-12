@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, KeyboardAvoidingView, Platform, Pressable } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, Platform, Pressable, useWindowDimensions } from 'react-native';
 import LittleLemonHeader from './components/LittleLemonHeader';
 import LittleLemonFooter from './components/LittleLemonFooter';
 import WelcomeScreen from './components/WelcomeScreen';
@@ -15,6 +15,7 @@ import { useState } from 'react';
 export default function App() {
 
   const [enterSite, setEnterSite] = useState(false)
+  const { width, height, fontScale } = useWindowDimensions()
 
   let [fontsLoaded] = useFonts({
     Satisfy_400Regular,

@@ -1,18 +1,33 @@
 import { useState } from "react"
-import { ScrollView, StyleSheet, Text, TextInput, View, Pressable, Alert } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, View, Pressable, Alert, useColorScheme } from 'react-native';
 
 export default function LoginForm() {
 
     const [email, onChangeEmail] = useState('');
     const [password, onChangePassword] = useState('');
     const [showLoggedIn, setShowLoggedIn] = useState(false);
+    const colorScheme = useColorScheme()
 
     return (
         <ScrollView keyboardDismissMode="on-drag" >
-            <View style={styles.header}>
-                <Text style={styles.headerText}>Log-in to Little Lemon</Text>
+            <View
+                style={[
+                    styles.header,
+                    colorScheme === 'light'
+                        ? { backgroundColor: '#F4CE14' }
+                        : { backgroundColor: '#333333' }
+                ]}
+            >
+                <Text style={styles.headerText}
+                >Log-in to Little Lemon</Text>
             </View>
-            <View>
+            <View
+                style={[
+                    colorScheme === 'light'
+                        ? { backgroundColor: '#F4CE14' }
+                        : { backgroundColor: '#fff' }
+                ]}
+            >
                 {
                     !showLoggedIn && (
                         <>
@@ -35,36 +50,40 @@ export default function LoginForm() {
                                 keyboardType={"default"}
                                 secureTextEntry={true}
                             />
-                            <Pressable
-                                style={styles.button}
-                                onPress={() => { setShowLoggedIn(!showLoggedIn) }}
-                            >
-                                <Text style={styles.buttonText}>
-                                    Log In
-                                </Text>
-                            </Pressable>
+                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                <Pressable
+                                    style={styles.button}
+                                    onPress={() => { setShowLoggedIn(!showLoggedIn) }}
+                                >
+                                    <Text style={styles.buttonText}>
+                                        Log In
+                                    </Text>
+                                </Pressable>
+                            </View>
+                        </>
+                    )
+                }
+
+                {
+                    showLoggedIn && (
+                        <>
+                            <Text style={styles.loginText}>
+                                'You are logged in!'
+                            </Text>
+                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                <Pressable
+                                    style={styles.button}
+                                    onPress={() => { setShowLoggedIn(!showLoggedIn) }}
+                                >
+                                    <Text style={styles.buttonText}>
+                                        Log Out
+                                    </Text>
+                                </Pressable>
+                            </View>
                         </>
                     )
                 }
             </View>
-
-            {
-                showLoggedIn && (
-                    <>
-                        <Text style={styles.loginText}>
-                            'You are logged in!'
-                        </Text>
-                        <Pressable
-                            style={styles.button}
-                            onPress={() => { setShowLoggedIn(!showLoggedIn) }}
-                        >
-                            <Text style={styles.buttonText}>
-                                Log Out
-                            </Text>
-                        </Pressable>
-                    </>
-                )
-            }
         </ScrollView>
     )
 }
@@ -87,7 +106,6 @@ const styles = StyleSheet.create({
     header: {
         paddingHorizontal: 40,
         paddingVertical: 20,
-        backgroundColor: '#F4CE14',
         justifyContent: 'center',
         flexDirection: "row",
         alignItems: 'center'
@@ -109,6 +127,12 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     button: {
-        paddingVertical: 10
+        paddingVertical: 4,
+        marginVertical: 10,
+        width: 150,
+        marginHorizontal: 'auto',
+        borderWidth: 2,
+        borderColor: '#333333',
+        borderRadius: 15
     }
 })

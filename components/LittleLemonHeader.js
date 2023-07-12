@@ -1,10 +1,16 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, Text, StyleSheet, Image, useColorScheme } from "react-native";
 
 export default function LittleLemonHeader() {
 
+    const colorScheme = useColorScheme();
+
     return (
-        <View style={styles.headerContainer}>
+        <View style={[
+            styles.headerContainer,
+            colorScheme === 'light'
+                ? { backgroundColor: '#F4CE14' }
+                : { backgroundColor: '#333333' }
+        ]}>
             <Image
                 resizeMode="contain"
                 style={styles.image}
@@ -22,7 +28,6 @@ const styles = StyleSheet.create({
     headerContainer: {
         flex: 0.2,
         flexDirection: 'row',
-        backgroundColor: '#F4CE14',
         justifyContent: 'center',
         alignItems: 'center',
         paddingVertical: 30
@@ -35,6 +40,6 @@ const styles = StyleSheet.create({
     image: {
         width: 80,
         height: 80,
-        marginHorizontal: 3
+        marginHorizontal: 5
     }
 })

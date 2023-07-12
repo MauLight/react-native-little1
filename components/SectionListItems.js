@@ -1,6 +1,6 @@
-import { View, Text, SectionList, StyleSheet } from 'react-native';
+import { View, Text, SectionList, Pressable, StyleSheet } from 'react-native';
 import { menuItemsToDisplay } from '../utils/array';
-import FeedbackForm from './FeedbackForm';
+import { useState } from 'react';
 
 const Item = ({ name, price }) => {
     return (
@@ -17,6 +17,8 @@ const Item = ({ name, price }) => {
 
 export default function SectionMenuItems() {
 
+    const [showMenu, setShowMenu] = useState(false)
+
     const renderItem = ({ item }) => <Item name={item.name} price={item.price} />
     const Separator = () => <View style={styles.separator} />
 
@@ -28,15 +30,27 @@ export default function SectionMenuItems() {
 
     return (
         <View style={{ flex: 0.8 }}>
-            <SectionList
-                stickySectionHeadersEnabled={true}
-                sections={menuItemsToDisplay}
-                keyExtractor={(item, index) => item + index}
-                renderItem={renderItem}
-                renderSectionHeader={renderSectionHeader}
-                ItemSeparatorComponent={Separator}
+            <Pressable
+                style={styles.button}
+                onPress={() => { setShowMenu(!showMenu) }}
             >
-            </SectionList>
+                <Text style={styles.text}>
+                    {showMenu ? 'Home' : 'Show Menu'}
+                </Text>
+            </Pressable>
+            {
+                showMenu && (
+                    <SectionList
+                        stickySectionHeadersEnabled={true}
+                        sections={menuItemsToDisplay}
+                        keyExtractor={(item, index) => item + index}
+                        renderItem={renderItem}
+                        renderSectionHeader={renderSectionHeader}
+                        ItemSeparatorComponent={Separator}
+                    >
+                    </SectionList>
+                )
+            }
         </View>
     );
 }
@@ -76,5 +90,8 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         backgroundColor: '#F4CE14',
         color: '#fff',
+    },
+    button: {
+        paddingVertical: 10
     }
 })

@@ -1,6 +1,7 @@
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Pressable } from 'react-native';
 
 export default function MenuItems() {
+    
 
     const menuItemsToDisplay = [
         ' Hummus \n Moutabal \n Falafel \n Marinated Olives \n Kofta \n Eggplant Salad \n Lentil Burger \n Smoked Salmon \n Kofta Burger \n Turkish Kebab \n Fries \n Buttered Rice \n Bread Sticks \n Pita Pocket \n Lentil Soup \n Greek Salad \n Rice Pilaf \n Baklava \n Tartufo \n Tiramisu \n Panna Cotta',
@@ -8,6 +9,14 @@ export default function MenuItems() {
 
     return (
         <View style={{ flex: 0.75 }}>
+            <Pressable
+                style={styles.button}
+                onPress={() => { setShowMenu(!showMenu) }}
+            >
+                <Text style={styles.text}>
+                    {showMenu ? 'Home' : 'Hide Menu'}
+                </Text>
+            </Pressable>
             <ScrollView
                 indicatorStyle={'black'}
                 style={styles.scrollview}

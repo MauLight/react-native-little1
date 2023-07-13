@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { ScrollView, StyleSheet, Text, TextInput, View, Pressable, Alert, useColorScheme } from 'react-native';
 
-export default function LoginForm({navigation}) {
+export default function LoginForm({ navigation }) {
 
     const [email, onChangeEmail] = useState('');
     const [password, onChangePassword] = useState('');
@@ -11,47 +11,43 @@ export default function LoginForm({navigation}) {
     return (
         <ScrollView style={styles.wrapper} keyboardDismissMode="on-drag" >
             <View
-                style={[ styles.wrapper,
-                    colorScheme === 'light'
-                        ? { backgroundColor: '#F4CE14' }
-                        : { backgroundColor: '#fff' }
+                style={[styles.wrapper,
+                colorScheme === 'light'
+                    ? { backgroundColor: '#F4CE14' }
+                    : { backgroundColor: '#fff' }
                 ]}
             >
-                {
-                    !showLoggedIn && (
-                        <>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={onChangeEmail}
-                                placeholder="Email"
-                                value={email}
-                                maxLength={50}
-                                keyboardType={"email-address"}
-                                onBlur={() => { Alert.alert("Remember to add your email.") }}
-                                clearButtonMode="always"
-                            />
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={onChangePassword}
-                                placeholder="Password"
-                                value={password}
-                                maxLength={14}
-                                keyboardType={"default"}
-                                secureTextEntry={true}
-                            />
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <Pressable
-                                    style={styles.button}
-                                    onPress={() => navigation.navigate('Welcome')}
-                                >
-                                    <Text style={styles.buttonText}>
-                                        Log In
-                                    </Text>
-                                </Pressable>
-                            </View>
-                        </>
-                    )
-                }
+                <>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={onChangeEmail}
+                        placeholder="Email"
+                        value={email}
+                        maxLength={50}
+                        keyboardType={"email-address"}
+                        onBlur={() => { Alert.alert("Remember to add your email.") }}
+                        clearButtonMode="always"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={onChangePassword}
+                        placeholder="Password"
+                        value={password}
+                        maxLength={14}
+                        keyboardType={"default"}
+                        secureTextEntry={true}
+                    />
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <Pressable
+                            style={styles.button}
+                            onPress={() => navigation.navigate('Welcome')}
+                        >
+                            <Text style={styles.buttonText}>
+                                Log In
+                            </Text>
+                        </Pressable>
+                    </View>
+                </>
             </View>
         </ScrollView>
     )

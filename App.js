@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, KeyboardAvoidingView, Platform, Pressable, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, Platform } from 'react-native';
 import LittleLemonHeader from './components/LittleLemonHeader';
 import LittleLemonFooter from './components/LittleLemonFooter';
 import WelcomeScreen from './components/WelcomeScreen';
@@ -8,6 +8,8 @@ import LoginForm from './components/Loginform';
 import { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { navigationRef } from './RootNavigation';
+import AppMenu from './components/AppMenu';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,9 +22,9 @@ export default function App() {
         style={styles.container}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <LittleLemonHeader />
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef} >
           <Stack.Navigator
-            initialRouteName="Login"
+            initialRouteName="Login to Little Lemon"
           >
             <Stack.Screen
               name='Login to Little Lemon'
@@ -38,6 +40,7 @@ export default function App() {
             />
           </Stack.Navigator>
         </NavigationContainer>
+        <AppMenu />
         <LittleLemonFooter />
         <StatusBar style="auto" />
       </KeyboardAvoidingView>

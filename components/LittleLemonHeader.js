@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet, Image, useColorScheme } from "react-native";
+import { View, Text, StyleSheet, Image, useColorScheme, Pressable } from "react-native";
+import * as RootNavigation from '../RootNavigation'
 
 export default function LittleLemonHeader() {
 
@@ -11,14 +12,18 @@ export default function LittleLemonHeader() {
                 ? { backgroundColor: '#F4CE14' }
                 : { backgroundColor: '#333333' }
         ]}>
-            <Image
-                resizeMode="contain"
-                style={styles.image}
-                source={require('../assets/imgs/logo.png')}
-            />
-            <View style={styles.innerContainer}>
-                <Text style={{ fontWeight: 'bold', fontSize: 30, color: '#fff' }}>LittleLemon Bar</Text>
-            </View>
+            <>
+                <Pressable onPress={() => RootNavigation.navigate('Welcome')}>
+                    <View style={styles.innerContainer}>
+                        <Image
+                            resizeMode="contain"
+                            style={styles.image}
+                            source={require('../assets/imgs/logo.png')}
+                        />
+                        <Text style={{ fontWeight: 'bold', fontSize: 40, color: '#fff' }}>LittleLemon Bar</Text>
+                    </View>
+                </Pressable>
+            </>
 
         </View>
     )
@@ -30,16 +35,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 30
-    },
-    headerText: {
-        padding: 2,
-        fontSize: 15,
-        color: '#fff',
+        paddingVertical: 15
     },
     image: {
-        width: 80,
-        height: 80,
-        marginHorizontal: 5
+        width: 78,
+        height: 78,
+    },
+    innerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })

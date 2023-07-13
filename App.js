@@ -12,6 +12,7 @@ import { navigationRef } from './RootNavigation';
 import AppMenu from './components/AppMenu';
 import Title from './components/Title';
 import Subscribe from './components/Subscribe';
+import RootNavigator from './navigators/RootNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,30 +35,7 @@ export default function App() {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
             <LittleLemonHeader setLoading={setLoading} />
             <NavigationContainer ref={navigationRef} >
-              <Stack.Navigator
-                initialRouteName="Newsletter"
-              >
-                <Stack.Screen
-                  name='Login to Little Lemon'
-                  component={LoginForm}
-                />
-                <Stack.Screen
-                  name='Title'
-                  component={Title}
-                />
-                <Stack.Screen
-                  name='Welcome'
-                  component={WelcomeScreen}
-                />
-                <Stack.Screen
-                  name='Menu'
-                  component={SectionMenuItems}
-                />
-                <Stack.Screen
-                  name='Newsletter'
-                  component={Subscribe}
-                />
-              </Stack.Navigator>
+              <RootNavigator />
             </NavigationContainer>
             <AppMenu />
             <LittleLemonFooter />

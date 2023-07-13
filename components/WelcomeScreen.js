@@ -55,6 +55,14 @@ export default function WelcomeScreen({ navigation }) {
                                 Menu
                             </Text>
                         </Pressable>
+                        <Pressable
+                            style={styles.button}
+                            onPress={() => navigation.navigate('Newsletter')}
+                        >
+                            <Text style={styles.buttonText}>
+                                Newsletter
+                            </Text>
+                        </Pressable>
                     </View>
                 </View>
             </ImageBackground>
@@ -105,7 +113,7 @@ const styles = StyleSheet.create({
     },
     button: {
         paddingVertical: 4,
-        marginVertical: 60,
+        marginTop: 40,
         width: 250,
         marginHorizontal: 'auto',
         borderWidth: 2,

@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image, useColorScheme, Pressable } from "react-native";
 import * as RootNavigation from '../RootNavigation'
 
-export default function LittleLemonHeader() {
+export default function LittleLemonHeader({ setLoading }) {
 
     const colorScheme = useColorScheme();
 
@@ -13,7 +13,12 @@ export default function LittleLemonHeader() {
                 : { backgroundColor: '#333333' }
         ]}>
             <>
-                <Pressable onPress={() => RootNavigation.navigate('Welcome')}>
+                <Pressable onPress={() => {
+                    setLoading(true)
+                    RootNavigation.navigate('Welcome')
+                }
+                }
+                >
                     <View style={styles.innerContainer}>
                         <Image
                             resizeMode="contain"

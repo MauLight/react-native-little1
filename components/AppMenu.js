@@ -20,7 +20,7 @@ export default function AppMenu({ navigation }) {
                     onPress={() => RootNavigation.navigate('Login to Little Lemon')}
                     onPressIn={() => {
                         setHome(false)
-                        setLog(true)
+                        setLog(!log)
                         setMenu(false)
                         }}
                 >
@@ -33,7 +33,7 @@ export default function AppMenu({ navigation }) {
                     style={styles.button}
                     onPress={() => RootNavigation.navigate('Welcome')}
                     onPressIn={() => {
-                        setHome(true)
+                        setHome(!home)
                         setLog(false)
                         setMenu(false)
                         }}
@@ -49,7 +49,7 @@ export default function AppMenu({ navigation }) {
                     onPressIn={() => {
                         setHome(false)
                         setLog(false)
-                        setMenu(true)
+                        setMenu(!menu)
                         }}
                 >
                     <Ionicons name='ios-list' size={32} color={menu ? 'tomato' : "#fff"} />

@@ -5,12 +5,13 @@
 // import WelcomeScreen from './components/WelcomeScreen';
 // import SectionMenuItems from './components/SectionListItems';
 // import LoginForm from './components/Loginform';
+// import { useState } from 'react';
 // import { NavigationContainer } from '@react-navigation/native';
-// import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+// import { createDrawerNavigator } from '@react-navigation/drawer';
 // import { navigationRef } from './RootNavigation';
-// import { Ionicons } from '@expo/vector-icons'
+// import AppMenu from './components/AppMenu';
 
-// const Tab = createMaterialBottomTabNavigator();
+// const Drawer = createDrawerNavigator();
 
 // export default function App() {
 
@@ -22,39 +23,26 @@
 //                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 //                 <LittleLemonHeader />
 //                 <NavigationContainer ref={navigationRef} >
-//                     <Tab.Navigator
-//                         screenOptions={({ route }) => ({
-//                             tabBarIcon: ({ focused, color, size }) => {
-//                                 let iconName;
-
-//                                 if (route.name === 'Welcome') {
-//                                     iconName = focused
-//                                         ? 'ios-information-circle'
-//                                         : 'ios-information-circle-outline';
-//                                 } else if (route.name === 'Menu') {
-//                                     iconName = 'ios-list';
-//                                 } else {
-//                                   iconName = 'ios-log-in'
-//                                 }
-//                                 return <Ionicons name={iconName} size={size} color={color} />;
-//                             },
-//                             tabBarActiveTintColor: 'tomato',
-//                             tabBarInactiveTintColor: 'gray',
-//                         })}>
-//                         <Tab.Screen
+//                     <Drawer.Navigator
+//                         useLegacyImplementation
+//                         screenOptions={{ drawerPosition: 'right' }}
+//                         initialRouteName="Login to Little Lemon"
+//                     >
+//                         <Drawer.Screen
 //                             name='Login to Little Lemon'
 //                             component={LoginForm}
 //                         />
-//                         <Tab.Screen
+//                         <Drawer.Screen
 //                             name='Welcome'
 //                             component={WelcomeScreen}
 //                         />
-//                         <Tab.Screen
+//                         <Drawer.Screen
 //                             name='Menu'
 //                             component={SectionMenuItems}
 //                         />
-//                     </Tab.Navigator>
+//                     </Drawer.Navigator>
 //                 </NavigationContainer>
+//                 <AppMenu />
 //                 <LittleLemonFooter />
 //                 <StatusBar style="auto" />
 //             </KeyboardAvoidingView>

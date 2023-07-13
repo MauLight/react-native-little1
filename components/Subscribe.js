@@ -1,11 +1,10 @@
 import { useState } from "react"
 import { ScrollView, StyleSheet, Text, TextInput, View, Pressable, Alert, useColorScheme, Image } from 'react-native';
+import { validateEmail } from '../utils/index'
 
-export default function LoginForm({ navigation }) {
+export default function Subscribe({ navigation }) {
 
     const [email, onChangeEmail] = useState('');
-    const [password, onChangePassword] = useState('');
-    const [showLoggedIn, setShowLoggedIn] = useState(false);
     const colorScheme = useColorScheme()
 
     return (
@@ -27,6 +26,12 @@ export default function LoginForm({ navigation }) {
                             />
                         </View>
                     </Pressable>
+                    <Text style={[styles.text2, colorScheme === 'light'
+                        ? { color: '#fff' }
+                        : { color: '#333333' }
+                    ]}>
+                        Subscribe to our newsletter to receive special offers and delicious recipies!
+                    </Text>
                     <TextInput
                         style={styles.input}
                         onChangeText={onChangeEmail}
@@ -34,29 +39,21 @@ export default function LoginForm({ navigation }) {
                         value={email}
                         maxLength={50}
                         keyboardType={"email-address"}
-                        onBlur={() => { Alert.alert("Remember to add your email.") }}
+                        onBlur={() => { !validateEmail(email) ? Alert.alert("Remember to add your email.") : null }}
                         clearButtonMode="always"
-                    />
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={onChangePassword}
-                        placeholder="Password"
-                        value={password}
-                        maxLength={14}
-                        keyboardType={"default"}
-                        secureTextEntry={true}
                     />
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                         <Pressable
                             style={styles.button}
+                            disabled={!validateEmail(email) ? true : false}
                             onPress={() => {
-                                Alert.alert("You are logged in!")
+                                Alert.alert("Thanks for subscribing, stay tuned!")
                                 navigation.navigate('Welcome')
                             }
                             }
                         >
                             <Text style={styles.buttonText}>
-                                Log In
+                                Subscribe
                             </Text>
                         </Pressable>
                     </View>
@@ -87,7 +84,7 @@ const styles = StyleSheet.create({
     button: {
         paddingVertical: 4,
         marginVertical: 55,
-        width: 220,
+        width: 250,
         marginHorizontal: 'auto',
         borderWidth: 2,
         borderColor: '#333333',
@@ -101,5 +98,12 @@ const styles = StyleSheet.create({
     innerContainer: {
         justifyContent: 'center',
         alignItems: 'center'
-    }
+    },
+    text2: {
+        fontSize: 15,
+        textAlign: 'center',
+        fontStyle: 'italic',
+        paddingHorizontal: 60,
+        marginVertical: 10
+    },
 })

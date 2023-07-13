@@ -5,45 +5,65 @@ import LittleLemonFooter from './components/LittleLemonFooter';
 import WelcomeScreen from './components/WelcomeScreen';
 import SectionMenuItems from './components/SectionListItems';
 import LoginForm from './components/Loginform';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { navigationRef } from './RootNavigation';
 import AppMenu from './components/AppMenu';
+import Title from './components/Title';
+import Subscribe from './components/Subscribe';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 10000);
+  }, [])
 
   return (
     <>
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <LittleLemonHeader />
-        <NavigationContainer ref={navigationRef} >
-          <Stack.Navigator
-            initialRouteName="Login to Little Lemon"
-          >
-            <Stack.Screen
-              name='Login to Little Lemon'
-              component={LoginForm}
-            />
-            <Stack.Screen
-              name='Welcome'
-              component={WelcomeScreen}
-            />
-            <Stack.Screen
-              name='Menu'
-              component={SectionMenuItems}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-        <AppMenu />
-        <LittleLemonFooter />
-        <StatusBar style="auto" />
-      </KeyboardAvoidingView>
+      {
+        loading ?
+          <Title setLoading={setLoading} loading={loading} />
+          :
+          <KeyboardAvoidingView
+            style={styles.container}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            <LittleLemonHeader setLoading={setLoading} />
+            <NavigationContainer ref={navigationRef} >
+              <Stack.Navigator
+                initialRouteName="Newsletter"
+              >
+                <Stack.Screen
+                  name='Login to Little Lemon'
+                  component={LoginForm}
+                />
+                <Stack.Screen
+                  name='Title'
+                  component={Title}
+                />
+                <Stack.Screen
+                  name='Welcome'
+                  component={WelcomeScreen}
+                />
+                <Stack.Screen
+                  name='Menu'
+                  component={SectionMenuItems}
+                />
+                <Stack.Screen
+                  name='Newsletter'
+                  component={Subscribe}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+            <AppMenu />
+            <LittleLemonFooter />
+            <StatusBar style="auto" />
+          </KeyboardAvoidingView>
+      }
     </>
   );
 }

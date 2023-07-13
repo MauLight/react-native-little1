@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, ScrollView, Image, ImageBackground } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, ImageBackground, Pressable } from "react-native";
 
-export default function WelcomeScreen({ font }) {
+export default function WelcomeScreen({ navigation }) {
 
 
 
@@ -46,6 +46,16 @@ export default function WelcomeScreen({ font }) {
                         accessible={true}
                         accessibilityLabel={'Sea food'}
                     />
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <Pressable
+                            style={styles.button}
+                            onPress={() => navigation.navigate('Menu')}
+                        >
+                            <Text style={styles.buttonText}>
+                                Menu
+                            </Text>
+                        </Pressable>
+                    </View>
                 </View>
             </ImageBackground>
         </ScrollView>
@@ -59,8 +69,8 @@ const styles = StyleSheet.create({
 
     },
     welcomeHeader: {
-        fontSize: 40,
-        fontFamily: 'Satisfy_400Regular',
+        fontSize: 60,
+        textAlign: 'center',
         fontWeight: 'bold',
         marginVertical: 5,
     },
@@ -85,5 +95,21 @@ const styles = StyleSheet.create({
     }, textWrap: {
         paddingHorizontal: 20,
         paddingVertical: 20
+    },
+    buttonText: {
+        fontSize: 40,
+        color: 'black',
+        paddingVertical: 30,
+
+        textAlign: 'center'
+    },
+    button: {
+        paddingVertical: 4,
+        marginVertical: 60,
+        width: 250,
+        marginHorizontal: 'auto',
+        borderWidth: 2,
+        borderColor: '#333333',
+        borderRadius: 15
     }
 })

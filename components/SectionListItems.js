@@ -51,7 +51,7 @@ export default function SectionMenuItems() {
     );
 
     return (
-        <View style={{ flex: 0.8 }}>
+        <View style={{ flex: 1 }}>
             <SectionList
                 stickySectionHeadersEnabled={true}
                 sections={menuItemsToDisplay}
@@ -78,25 +78,25 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'black',
-        fontSize: 30,
+        fontSize: 50,
         flexWrap: 'wrap',
         textAlign: 'center',
         marginBottom: 20
     },
     text2: {
         color: '#333333',
-        fontSize: 18,
+        fontSize: 25,
     },
     text3: {
         color: '#333333',
-        fontSize: 15,
+        fontSize: 25,
     },
     separator: {
         borderBottomWidth: 1,
         borderColor: '#EDEFEE'
     },
     sectionHeader: {
-        fontSize: 20,
+        fontSize: 45,
         paddingHorizontal: 40,
         paddingVertical: 5
     },

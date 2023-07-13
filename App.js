@@ -3,62 +3,44 @@ import { StyleSheet, Text, View, KeyboardAvoidingView, Platform, Pressable, useW
 import LittleLemonHeader from './components/LittleLemonHeader';
 import LittleLemonFooter from './components/LittleLemonFooter';
 import WelcomeScreen from './components/WelcomeScreen';
-import MenuItems from './components/MenuItems';
-import FlatMenuItems from './components/FlatMenuItems';
-import { useFonts } from '@expo-google-fonts/satisfy';
-import { Satisfy_400Regular } from '@expo-google-fonts/satisfy';
 import SectionMenuItems from './components/SectionListItems';
-import FeedbackForm from './components/FeedbackForm';
 import LoginForm from './components/Loginform';
 import { useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  const [enterSite, setEnterSite] = useState(false)
-  const { width, height, fontScale } = useWindowDimensions()
-
-  let [fontsLoaded] = useFonts({
-    Satisfy_400Regular,
-  });
 
   return (
     <>
-      {
-        fontsLoaded ?
-          <KeyboardAvoidingView
-            style={styles.container}
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-            <View style={styles.container}>
-              <LittleLemonHeader />
-              {
-                !enterSite && (
-                  <WelcomeScreen />
-                )
-              }
-              {
-                enterSite && (
-                  <SectionMenuItems />
-                )
-              }
-            </View>
-            {
-              enterSite && (
-                <View>
-                  <LoginForm />
-                </View>
-              )
-            }
-            <View>
-              <Pressable style={styles.button} onPress={() => setEnterSite(!enterSite)}>
-                <Text style={styles.text}>{!enterSite ? 'Enter Site' : 'Home'}</Text>
-              </Pressable>
-              <LittleLemonFooter />
-            </View>
-            <StatusBar style="auto" />
-          </KeyboardAvoidingView>
-          :
-          null
-      }
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <LittleLemonHeader />
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Login"
+          >
+            <Stack.Screen
+              name='Login to Little Lemon'
+              component={LoginForm}
+            />
+            <Stack.Screen
+              name='Welcome'
+              component={WelcomeScreen}
+            />
+            <Stack.Screen
+              name='Menu'
+              component={SectionMenuItems}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+        <LittleLemonFooter />
+        <StatusBar style="auto" />
+      </KeyboardAvoidingView>
     </>
   );
 }

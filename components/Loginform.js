@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { ScrollView, StyleSheet, Text, TextInput, View, Pressable, Alert, useColorScheme } from 'react-native';
 
-export default function LoginForm() {
+export default function LoginForm({navigation}) {
 
     const [email, onChangeEmail] = useState('');
     const [password, onChangePassword] = useState('');
@@ -9,20 +9,9 @@ export default function LoginForm() {
     const colorScheme = useColorScheme()
 
     return (
-        <ScrollView keyboardDismissMode="on-drag" >
+        <ScrollView style={styles.wrapper} keyboardDismissMode="on-drag" >
             <View
-                style={[
-                    styles.header,
-                    colorScheme === 'light'
-                        ? { backgroundColor: '#F4CE14' }
-                        : { backgroundColor: '#333333' }
-                ]}
-            >
-                <Text style={styles.headerText}
-                >Log-in to Little Lemon</Text>
-            </View>
-            <View
-                style={[
+                style={[ styles.wrapper,
                     colorScheme === 'light'
                         ? { backgroundColor: '#F4CE14' }
                         : { backgroundColor: '#fff' }
@@ -42,7 +31,7 @@ export default function LoginForm() {
                                 clearButtonMode="always"
                             />
                             <TextInput
-                                style={styles.input2}
+                                style={styles.input}
                                 onChangeText={onChangePassword}
                                 placeholder="Password"
                                 value={password}
@@ -53,30 +42,10 @@ export default function LoginForm() {
                             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                                 <Pressable
                                     style={styles.button}
-                                    onPress={() => { setShowLoggedIn(!showLoggedIn) }}
+                                    onPress={() => navigation.navigate('Welcome')}
                                 >
                                     <Text style={styles.buttonText}>
                                         Log In
-                                    </Text>
-                                </Pressable>
-                            </View>
-                        </>
-                    )
-                }
-
-                {
-                    showLoggedIn && (
-                        <>
-                            <Text style={styles.loginText}>
-                                'You are logged in!'
-                            </Text>
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <Pressable
-                                    style={styles.button}
-                                    onPress={() => { setShowLoggedIn(!showLoggedIn) }}
-                                >
-                                    <Text style={styles.buttonText}>
-                                        Log Out
                                     </Text>
                                 </Pressable>
                             </View>
@@ -89,19 +58,16 @@ export default function LoginForm() {
 }
 
 const styles = StyleSheet.create({
+    wrapper: {
+        flex: 1,
+    },
     input: {
         color: '#333333',
         fontSize: 18,
-        paddingVertical: 10,
+        paddingVertical: 30,
         paddingHorizontal: 40,
         borderBottomWidth: 1,
         borderColor: '#EDEFEE'
-    },
-    input2: {
-        color: '#333333',
-        fontSize: 18,
-        paddingVertical: 10,
-        paddingHorizontal: 40,
     },
     header: {
         paddingHorizontal: 40,
@@ -121,15 +87,15 @@ const styles = StyleSheet.create({
         paddingVertical: 33
     },
     buttonText: {
-        fontSize: 20,
+        fontSize: 40,
         color: 'black',
-        paddingVertical: 20,
+        paddingVertical: 30,
         textAlign: 'center'
     },
     button: {
         paddingVertical: 4,
-        marginVertical: 10,
-        width: 150,
+        marginVertical: 60,
+        width: 250,
         marginHorizontal: 'auto',
         borderWidth: 2,
         borderColor: '#333333',

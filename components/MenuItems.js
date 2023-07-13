@@ -8,15 +8,7 @@ export default function MenuItems() {
     ];
 
     return (
-        <View style={{ flex: 0.75 }}>
-            <Pressable
-                style={styles.button}
-                onPress={() => { setShowMenu(!showMenu) }}
-            >
-                <Text style={styles.text}>
-                    {showMenu ? 'Home' : 'Hide Menu'}
-                </Text>
-            </Pressable>
+
             <ScrollView
                 indicatorStyle={'black'}
                 style={styles.scrollview}
@@ -28,19 +20,19 @@ export default function MenuItems() {
                     {menuItemsToDisplay[0]}
                 </Text>
             </ScrollView>
-        </View>
     );
 }
 
 const styles = StyleSheet.create({
     scrollview: {
+        flex: 1,
         paddingHorizontal: 40,
         paddingVertical: 10,
         backgroundColor: '#F8fde8'
     },
     text: {
         color: 'black',
-        fontSize: 40,
+        fontSize: 50,
         flexWrap: 'wrap',
         textAlign: 'center',
         marginVertical: 20
